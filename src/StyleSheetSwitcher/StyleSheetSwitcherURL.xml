@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="StyleSheetSwitcher.widget.StyleSheetSwitcherURL" needsEntityContext="false" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>StyleSheetSwitcher (URL)</name>
+    <description>The description of this widget.</description>
+
+    <icon />
+
+    <properties>
+       <property key="cssFolder" type="string" required="true" defaultValue="">
+            <caption>Folder</caption>
+            <category>Behavior</category>
+            <description>The folder containing the stylesheets (such as: /custom/style/css). A trailing slash is added automatically</description>
+        </property>
+        <property key="cssDefault" type="string" required="true" defaultValue="">
+            <caption>Default css</caption>
+            <category>Behavior</category>
+            <description>The default CSS stylesheet (such as: default.css).</description>
+        </property>
+
+         <property key="removeDefault" type="boolean" required="true" defaultValue="true">
+            <caption>Remove default css</caption>
+            <category>Behavior</category>
+            <description>Remove the default css when loading a new one (if the custom stylesheet is equal to the default stylesheet it will not be removed from the DOM).</description>
+        </property>
+     
+        <property key="urlEntity" type="entity" required="true" allowNonPersistableEntities="true">
+            <caption>URL Entity</caption>
+            <category>Behavior</category>
+            <description>The entity in which the URL will be saved</description>
+        </property>
+        
+        <property key="urlAttribute" type="attribute" entityProperty="urlEntity" allowNonPersistableEntities="true" required="true">
+            <caption>URL Attribute</caption>
+            <category>Behavior</category>
+            <description>The attribute in which the URL will be saved</description>
+            <attributeTypes>
+                <attributeType name="String"/>
+            </attributeTypes>
+        </property>
+        
+        <property key="mfToExecute" type="microflow" required="true" defaultValue="" entityProperty="urlEntity">
+            <caption>Microflow</caption>
+            <category>Behavior</category>
+            <description>The microflow to execute in order to find a different stylesheet. Expects URL entity, returns filename.</description>
+            <returnType type="String" />
+        </property>
+    </properties>
+</widget>
+
