@@ -28,17 +28,19 @@ However, when the default is different from the custom stylesheet, the widget ca
 
 To prevent the page from "being without stylesheet", it can be useful to add a "loading div" to the index.html:
 
-`<div id="loader">The application is loaded</div>`
+```html
+<div id="loader">The application is loaded</div>
+```
 
 When the page container is hidden, the page is not shown before the custom style is added.:
-```
+```css
 #content{
    visibility: hidden;
 }
 ```
 
 The custom stylesheet should contain:
-```
+```css
 #content{
   visibility: visible;
 }
