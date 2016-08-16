@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <widget id="StyleSheetSwitcher.widget.StyleSheetSwitcher" needsEntityContext="false" xmlns="http://www.mendix.com/widget/1.0/">
     <name>StyleSheetSwitcher</name>
-    <description>The description of this widget.</description>
+    <description>Retrieve a custom stylesheet and apply this with cacheburst enabled. The stylesheet that is retrieved depends on Microflow Logic. It is possible to the client url as a source for the Microflow.</description>
 
     <icon />
 
