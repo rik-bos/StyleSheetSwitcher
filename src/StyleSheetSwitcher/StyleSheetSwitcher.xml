@@ -31,6 +31,15 @@
             <description>The microflow to execute in order to find a different stylesheet. Expects URL entity, returns filename.</description>
             <returnType type="String" />
         </property>
+        <property key="mxuiBehavior" type="enumeration" required="true" defaultValue="after">
+        	<caption>Reload mxui.css</caption>
+        	<category>Behavior</category>
+        	<description></description>
+        	<enumerationValues>
+        		<enumerationValue key="not">No reload</enumerationValue>
+        		<enumerationValue key="after">Reload after custom style</enumerationValue>
+        	</enumerationValues>
+        </property>
     </properties>
 </widget>
 

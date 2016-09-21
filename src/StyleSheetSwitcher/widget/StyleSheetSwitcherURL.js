@@ -46,6 +46,7 @@ define([
         urlEntity: "",
         urlAttribute: "",
         removeDefault: "",
+        mxuiBehavior: "",
 
         // Internal variables. Non-primitives created in the prototype are shared between all widget instances.
         _handles: null,
@@ -176,9 +177,15 @@ define([
             }
             
             if (cssPath.slice(-4).toLowerCase() == ".css"){
+
+                if (this.mxuiBehavior === "after") {
+                    console.log(this.id + " - Removing path: mxclientsystem/mxui/ui/mxui.css");
+                    dom.removeCss("mxclientsystem/mxui/ui/mxui.css");
+
+                }
+
+
                             
-                console.log(this.id + " - Removing path: mxclientsystem/mxui/ui/mxui.css");
-                dom.removeCss("mxclientsystem/mxui/ui/mxui.css");
                 
                 console.log(this.id + " - Adding path: " + cssPath);
                 dom.addCss( cssPath );
@@ -190,8 +197,10 @@ define([
                     }
                 }
                 
-                console.log(this.id + " - Adding path: mxclientsystem/mxui/ui/mxui.css");
-                dom.addCss("mxclientsystem/mxui/ui/mxui.css");
+                if (this.mxuiBehavior ==="after"){
+                    console.log(this.id + " - Adding path: mxclientsystem/mxui/ui/mxui.css");
+                    dom.addCss("mxclientsystem/mxui/ui/mxui.css");    
+                }
 
             }
             else{
