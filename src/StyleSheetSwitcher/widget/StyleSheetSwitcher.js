@@ -40,7 +40,7 @@ define([
 
         _executeMF : function(){
             // If a microflow has been set execute the microflow on a click.
-            console.log(mx.appUrl);
+            
             
             if (this.mfToExecute !== "") {
                 
@@ -55,7 +55,7 @@ define([
                             this._updateRendering();
                         }),
                         error: dojoLang.hitch(this, function(error) {
-                            console.log(this.id + ": An error occurred while executing microflow: " + error.description);
+                            logger.info(this.id + ": An error occurred while executing microflow: " + error.description);
                         })
                     }, this);
             }

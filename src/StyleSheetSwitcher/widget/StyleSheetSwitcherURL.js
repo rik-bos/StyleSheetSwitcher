@@ -117,16 +117,16 @@ define([
 
         _executeMF : function(){
             // If a microflow has been set execute the microflow on a click.
-            console.log(mx.appUrl);
+            logger.debug(this.id + "App URL: " + mx.appUrl);
             
             if (this.mfToExecute !== "") {
-                console.log(this.id + " - object: " + this._urlObj.getGUID());
+                logger.debug(this.id + " - object: " + this._urlObj.getGuid());
                 
                 mx.data.action({
                         params: {
                             actionname: this.mfToExecute,
                             applyto: "selection",
-                            guids:  [ this._urlObj.getGUID() ]
+                            guids:  [ this._urlObj.getGuid() ]
 
                         },
                         callback: dojoLang.hitch(this, function( resultString ) {
@@ -134,7 +134,7 @@ define([
                             this._updateRendering();
                         }),
                         error: dojoLang.hitch(this, function(error) {
-                            console.log(this.id + ": An error occurred while executing microflow: " + error.description);
+                            logger.warning(this.id + ": An error occurred while executing microflow: " + error.description);
                         })
                     }, this);
             }
@@ -154,7 +154,7 @@ define([
             
             if (this.cssFolder !== ""){
                 
-                if (this.cssFolder.slice(-1) != "/"){
+                if (this.cssFolder.slice(-1) !== "/"){
                     this.cssFolder += "/";
                 }
                     
@@ -166,20 +166,20 @@ define([
 
                      
             if (this._cssCustom !== "" && this._cssCustom !== null) {
-                if (this._cssCustom.slice(-4).toLowerCase() == ".css"){
+                if (this._cssCustom.slice(-4).toLowerCase() === ".css"){
                     cssPath += this._cssCustom;
                 }                
             } else if (this.cssDefault !== "" ) {
-                if (this.cssDefault.slice(-4).toLowerCase() == ".css"){
+                if (this.cssDefault.slice(-4).toLowerCase() === ".css"){
                     cssPath += this.cssDefault;
 
                 }
             }
             
-            if (cssPath.slice(-4).toLowerCase() == ".css"){
+            if (cssPath.slice(-4).toLowerCase() === ".css"){
 
                 if (this.mxuiBehavior === "after") {
-                    console.log(this.id + " - Removing path: mxclientsystem/mxui/ui/mxui.css");
+                    logger.debug(this.id + " - Removing path: mxclientsystem/mxui/ui/mxui.css");
                     dom.removeCss("mxclientsystem/mxui/ui/mxui.css");
 
                 }
@@ -187,24 +187,24 @@ define([
 
                             
                 
-                console.log(this.id + " - Adding path: " + cssPath);
+                logger.debug(this.id + " - Adding path: " + cssPath);
                 dom.addCss( cssPath );
 
                 if (this.removeDefault === true && this.cssDefault !== this._cssCustom){
-                    if (this.cssDefault.slice(-4).toLowerCase() == ".css"){
-                        console.log(this.id + " - Removing default: " + this.cssFolder + this.cssDefault);
-                        dom.removeCss( this.cssFolder + this.cssDefault)
+                    if (this.cssDefault.slice(-4).toLowerCase() === ".css"){
+                        logger.debug(this.id + " - Removing default: " + this.cssFolder + this.cssDefault);
+                        dom.removeCss( this.cssFolder + this.cssDefault);
                     }
                 }
                 
                 if (this.mxuiBehavior ==="after"){
-                    console.log(this.id + " - Adding path: mxclientsystem/mxui/ui/mxui.css");
+                    logger.debug(this.id + " - Adding path: mxclientsystem/mxui/ui/mxui.css");
                     dom.addCss("mxclientsystem/mxui/ui/mxui.css");    
                 }
 
             }
             else{
-                console.log(this.id + " - Invalid path: " + cssPath);
+                logger.warning(this.id + " - Invalid path: " + cssPath);
             }
         },
 
