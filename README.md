@@ -8,7 +8,7 @@ When multiple users share a Mendix application, but custom style is required, it
 
 The microflow logic can depend on the url the client uses to access the application (eg. the Mendix Custom URL). In that case the widget will create an object in which it stores the client url and this will be passed to the microflow.
 
-If you'd like the widget to load your complete theme (and not just some extra stylesheet) you should remove the stylesheet from the theme\index.html and load it within the widget. A loader <div> (see further) may be useful to prevent the page from being rendered without a stylesheet.
+If you'd like the widget to load your complete theme (and not just some extra stylesheet) you should remove the stylesheet from the theme\index.html and load it within the widget. A loader ```<div>``` (see further) may be useful to prevent the page from being rendered without a stylesheet.
 
 ## Description
 
