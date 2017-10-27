@@ -134,7 +134,7 @@ define([
                             this._updateRendering();
                         }),
                         error: dojoLang.hitch(this, function(error) {
-                            logger.warning(this.id + ": An error occurred while executing microflow: " + error.description);
+                            logger.info(this.id + ": An error occurred while executing microflow: " + error.description);
                         })
                     }, this);
             }
@@ -204,7 +204,7 @@ define([
 
             }
             else{
-                logger.warning(this.id + " - Invalid path: " + cssPath);
+                logger.info(this.id + " - Invalid path: " + cssPath);
             }
         },
 
