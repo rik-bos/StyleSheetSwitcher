@@ -13,13 +13,13 @@
             <category>Behavior</category>
             <description>The folder containing the stylesheets (such as: /custom/style/css). A trailing slash is added automatically</description>
         </property>
-        <property key="cssDefault" type="string" required="true" defaultValue="">
+        <property key="cssDefault" type="microflow" required="true" defaultValue="" entityProperty="urlEntity">
             <caption>Default css</caption>
             <category>Behavior</category>
-            <description>The default CSS stylesheet (such as: default.css).</description>
+            <description>The the default styleshete URLs will be saved (such as: default.css,custom.css).</description>
+            <returnType type="String" />
         </property>
-
-         <property key="removeDefault" type="boolean" required="true" defaultValue="true">
+        <property key="removeDefault" type="boolean" required="true" defaultValue="true">
             <caption>Remove default css</caption>
             <category>Behavior</category>
             <description>Remove the default css when loading a new one (if the custom stylesheet is equal to the default stylesheet it will not be removed from the DOM).</description>
@@ -43,8 +43,18 @@
         <property key="mfToExecute" type="microflow" required="true" defaultValue="" entityProperty="urlEntity">
             <caption>Microflow</caption>
             <category>Behavior</category>
-            <description>The microflow to execute in order to find a different stylesheet. Expects URL entity, returns filename.</description>
+            <description>The microflow to execute in order to find a different stylesheet. Expects URL entity, returns filenames.</description>
             <returnType type="String" />
+        </property>
+
+        <property key="CustomCssReload" type="enumeration" required="true" defaultValue="after">
+        	<caption>Delete and reload custom.css</caption>
+        	<category>Behavior</category>
+        	<description></description>
+        	<enumerationValues>
+        		<enumerationValue key="not">No reload</enumerationValue>
+        		<enumerationValue key="after">Reload after change default theme</enumerationValue>
+        	</enumerationValues>
         </property>
 
         <property key="mxuiBehavior" type="enumeration" required="true" defaultValue="after">
