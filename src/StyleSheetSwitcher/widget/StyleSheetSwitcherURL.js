@@ -73,6 +73,7 @@ define([
                         this._urlObj = obj;
                         this._urlObj.set(this.urlAttribute, mx.appUrl);
                         this._executeMF();
+                        this._cssDefault();
                     })
                 });
                 
@@ -140,6 +141,30 @@ define([
             }
         },
 
+        _cssDefault: function () {
+            // If a microflow has been set execute the microflow on a click.
+            logger.debug(this.id + "App URL: " + mx.appUrl);
+
+            if (this._cssDefault !== "") {
+                logger.debug(this.id + " - object: " + this._urlObj.getGuid());
+
+                mx.data.action({
+                    params: {
+                        actionname: this.cssDefault,
+                        applyto: "selection",
+                        guids: [this._urlObj.getGuid()]
+
+                    },
+                    callback: dojoLang.hitch(this, function (resultString) {
+                        this.cssDefault = resultString;
+                        this._updateRendering();
+                    }),
+                    error: dojoLang.hitch(this, function (error) {
+                        logger.info(this.id + ": An error occurred while executing microflow: " + error.description);
+                    })
+                }, this);
+            }
+        },
 
         // Attach events to HTML dom elements
         _setupEvents: function () {
@@ -184,9 +209,13 @@ define([
 
                 }
 
+                if (this.CustomCssReload === "after") {
+                    logger.debug(this.id + " - Removing path: styles/css/custom/custom.css");
+                    dom.removeCss("styles/css/custom/custom.css");
 
+                }
                             
-                
+                //dom.removeCss(cssPath);
                 logger.debug(this.id + " - Adding path: " + cssPath);
                 dom.addCss( cssPath );
 
@@ -202,10 +231,17 @@ define([
                     dom.addCss("mxclientsystem/mxui/ui/mxui.css");    
                 }
 
+                if (this.CustomCssReload === "after") {
+                    logger.debug(this.id + " - Removing path: styles/css/custom/custom.css");
+                    dom.addCss("styles/css/custom/custom.css");
+
+                }
+
             }
             else{
                 logger.info(this.id + " - Invalid path: " + cssPath);
             }
+            
         },
 
         // Handle validations.
