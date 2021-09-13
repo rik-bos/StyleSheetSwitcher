@@ -16,48 +16,48 @@
 */
 
 // Required module list. Remove unnecessary modules, you can always get them back from the boilerplate.
-define([
-    "dojo/_base/declare",
-    "StyleSheetSwitcher/widget/StyleSheetSwitcherURL",
-    "dojo/_base/lang"],
-
-     function (declare, StyleSheetSwitcherURL, dojoLang) {
+define(["dojo/_base/declare", "StyleSheetSwitcher/widget/StyleSheetSwitcherURL", "dojo/_base/lang"], function (
+    declare,
+    StyleSheetSwitcherURL,
+    dojoLang
+) {
     "use strict";
 
     // Declare widget's prototype.
-    return declare("StyleSheetSwitcher.widget.StyleSheetSwitcher", [ StyleSheetSwitcherURL], {
-        
+    return declare("StyleSheetSwitcher.widget.StyleSheetSwitcher", [StyleSheetSwitcherURL], {
         // Override postcreate function..
         postCreate: function () {
-            logger.debug(this.id + ".postCreate");
+            mx.logger.debug(this.id + ".postCreate");
 
             if (this.mfToExecute !== "") {
-               this._executeMF();         
+                this._executeMF();
             } else {
                 this._updateRendering();
             }
         },
 
-        _executeMF : function(){
+        _executeMF: function () {
             // If a microflow has been set execute the microflow on a click.
-            
-            
+
             if (this.mfToExecute !== "") {
-                
-                
-                mx.data.action({
+                mx.data.action(
+                    {
                         params: {
                             actionname: this.mfToExecute,
-                            applyto: "none" 
+                            applyto: "none",
                         },
-                        callback: dojoLang.hitch(this, function( resultString ) {
+                        callback: dojoLang.hitch(this, function (resultString) {
                             this._cssCustom = resultString;
                             this._updateRendering();
                         }),
-                        error: dojoLang.hitch(this, function(error) {
-                            logger.info(this.id + ": An error occurred while executing microflow: " + error.description);
-                        })
-                    }, this);
+                        error: dojoLang.hitch(this, function (error) {
+                            mx.logger.info(
+                                this.id + ": An error occurred while executing microflow: " + error.description
+                            );
+                        }),
+                    },
+                    this
+                );
             }
         },
     });
