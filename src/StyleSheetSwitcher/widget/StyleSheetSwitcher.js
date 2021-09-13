@@ -4,7 +4,7 @@
     ========================
 
     @file      : StyleSheetSwitcher.js
-    @version   : 1.0.0
+    @version   : 1.1.0
     @author    : Rik Bos
     @date      : 2016-08-15
     @copyright : TimeSeries 2016
